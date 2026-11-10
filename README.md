@@ -57,12 +57,13 @@ Open http://localhost:3000, pick a vendor, and press **Add to cart**.
 
 ## Who drove which part
 
-| Part | Driver | Navigator |
+| Part | Driver | Navigator(s) |
 |---|---|---|
-| A — User stories, feature file, sketch, estimate | _Partner 1_ | _Partner 2_ |
-| B — Models, migrations, validations, routes, controller | _Partner 1_ | _Partner 2_ |
-| C — JavaScript client (fetch, DOM, accessibility) | _Partner 2_ | _Partner 1_ |
-| D — Reflection | Both | Both |
+| A — User stories, feature file, sketch, estimate | Yousef | Abdsalam |
+| B — Models, migrations, validations, routes | Abdullah | Abdulaziz |
+| B — OrderItemsController, partial, JSON | Abdulaziz | Abdullah |
+| C — JavaScript client (fetch, DOM, accessibility) | Abdsalam | Yousef |
+| D — Reflection | All four | All four |
 
 ## Sources and AI use
 
