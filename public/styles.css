@@ -17,6 +17,8 @@ main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
 .cart { background: #fff; border: 1px solid #e3e3df; border-radius: 8px; padding: 1rem; }
 .cart-row form { margin: 0; }
 .cart-total { font-size: 1.1rem; margin-top: 1rem; }
+.place-order { margin-top: 0.75rem; }
+.place-order[hidden] { display: none; }
 .cart-status { min-height: 1.2em; color: #555; margin: 0; }
 .cart-error { background: #fdecea; color: #a12a1f; padding: 0.5rem; border-radius: 6px; }
 button, input[type="submit"] { font: inherit; padding: 0.4rem 0.9rem; border-radius: 6px; border: 1px solid #0b5cad; background: #0b5cad; color: #fff; cursor: pointer; }

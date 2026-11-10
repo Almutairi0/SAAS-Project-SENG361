@@ -1,7 +1,8 @@
 # CampusEats — SENG 361 Course Assignment (Version B)
 
 A small Rails app for ordering from the university food court. Vendors publish
-menu items; students add items to a cart with AJAX (no page reload).
+menu items; students add items to a cart with AJAX (no page reload) and place
+the order at checkout.
 
 ## Requirements
 
@@ -32,6 +33,10 @@ Open http://localhost:3000, pick a vendor, and press **Add to cart**.
 | Stop the server, then add an item | Error: "Network problem: check your connection and try again." |
 | Tab to a button, press Enter or Space | Works with the keyboard |
 | Publish an item with price 0 | Form shows "Price must be greater than 0" |
+| Add "Chicken Burger", then press **Place order** | Confirmation page: "Order #N confirmed. Total: 15.00 SAR", item listed with no Remove button |
+| Open the cart after placing an order | New empty cart, Cart (0), no **Place order** button |
+| Remove the last item from the cart | **Place order** button disappears |
+| Add or remove an item on a placed order (e.g. with curl) | Refused: 422 with JSON error "This order has already been placed and can't be changed." |
 
 ## Routes
 
@@ -41,6 +46,7 @@ Open http://localhost:3000, pick a vendor, and press **Add to cart**.
 | GET | /vendors/:vendor_id/menu_items | menu_items#index |
 | POST | /vendors/:vendor_id/menu_items | menu_items#create |
 | GET | /orders/:id | orders#show |
+| PATCH | /orders/:id | orders#update (place the order) |
 | POST | /orders/:order_id/order_items(.json) | order_items#create |
 | DELETE | /orders/:order_id/order_items/:id(.json) | order_items#destroy |
 
@@ -51,6 +57,7 @@ Open http://localhost:3000, pick a vendor, and press **Add to cart**.
 - Models: `app/models/` (Vendor, MenuItem, Order, OrderItem)
 - Migrations: `db/migrate/`
 - Cart controller: `app/controllers/order_items_controller.rb`
+- Checkout (place order): `app/controllers/orders_controller.rb#update`, `Order#place`
 - Cart row partial: `app/views/order_items/_order_item.html.erb`
 - AJAX client: `public/cart.js`
 - Cucumber feature (Part A): `docs/order_food.feature`

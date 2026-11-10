@@ -1,4 +1,4 @@
-<h1>My cart</h1>
+<h1><%= @order.cart? ? "My cart" : "Order confirmation" %></h1>
 
 <%= render "orders/cart", order: @order, order_items: @order_items %>
 

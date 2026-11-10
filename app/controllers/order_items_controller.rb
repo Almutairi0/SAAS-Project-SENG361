@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
   before_action :set_order
+  before_action :require_cart
 
   # POST /orders/:order_id/order_items(.json)
   def create
@@ -35,10 +36,22 @@ class OrderItemsController < ApplicationController
 
   private
 
-  # before_action filter: load the order from the URL and make sure it is this student's cart
+  # before_action filter: load the order from the URL and make sure it belongs to this student
+  # (someone else's order: 403; the student's own placed order: 422 from require_cart)
   def set_order
     @order = Order.find(params[:order_id])
-    head :forbidden unless @order.id == session[:order_id]
+    head :forbidden unless own_order?(@order)
+  end
+
+  # before_action filter: a placed order is final, so refuse with 422
+  def require_cart
+    return if @order.cart?
+
+    message = "This order has already been placed and can't be changed."
+    respond_to do |format|
+      format.json { render json: { errors: [message] }, status: 422 }
+      format.html { redirect_back fallback_location: order_path(@order), alert: message, status: :see_other }
+    end
   end
 
   # Strong parameters: only these two fields can be set from the request

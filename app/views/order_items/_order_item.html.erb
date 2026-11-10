@@ -1,9 +1,11 @@
 <li id="<%= dom_id(order_item) %>" class="cart-row">
   <span class="row-name"><%= order_item.menu_item.name %> × <%= order_item.quantity %></span>
   <span class="row-price"><%= sar(order_item.subtotal) %></span>
-  <%= button_to "Remove",
-        order_order_item_path(order_item.order_id, order_item),
-        method: :delete,
-        form: { class: "remove-item" },
-        aria: { label: "Remove #{order_item.menu_item.name} from cart" } %>
+  <% if local_assigns.fetch(:editable, true) %>
+    <%= button_to "Remove",
+          order_order_item_path(order_item.order_id, order_item),
+          method: :delete,
+          form: { class: "remove-item" },
+          aria: { label: "Remove #{order_item.menu_item.name} from cart" } %>
+  <% end %>
 </li>

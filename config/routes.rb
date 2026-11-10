@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   # Order items are nested under orders: /orders/:order_id/order_items
-  resources :orders, only: [:show] do
+  # PATCH /orders/:id places the order (checkout)
+  resources :orders, only: [:show, :update] do
     resources :order_items, only: [:create, :destroy]
   end
 end

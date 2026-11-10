@@ -15,6 +15,7 @@
     var status = document.getElementById("cart-status");
     var error = document.getElementById("cart-error");
     var count = document.getElementById("cart-count");
+    var placeOrder = document.getElementById("place-order");
     var tokenTag = document.querySelector('meta[name="csrf-token"]');
     var csrfToken = tokenTag ? tokenTag.content : "";
 
@@ -32,6 +33,8 @@
       total.textContent = data.total_text;
       if (count) count.textContent = data.count;
       empty.hidden = list.children.length > 0;
+      // "Place order" is only offered while the cart has items
+      if (placeOrder) placeOrder.hidden = list.children.length === 0;
     }
 
     // fetch with a time limit: the network is not reliable and latency is not zero
