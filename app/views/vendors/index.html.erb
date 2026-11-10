@@ -1,0 +1,11 @@
+<h1>Food court vendors</h1>
+
+<% if @vendors.any? %>
+  <ul class="vendor-list">
+    <% @vendors.each do |vendor| %>
+      <li><%= link_to vendor.name, vendor_menu_items_path(vendor) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No vendors yet. Run <code>bin/rails db:seed</code> to load sample data.</p>
+<% end %>

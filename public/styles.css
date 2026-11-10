@@ -1,0 +1,28 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: #1d2433; background: #f7f7f5; }
+a { color: #0b5cad; }
+.site-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.5rem; background: #1d2433; }
+.site-header a { color: #fff; margin-left: 1rem; text-decoration: none; }
+.site-header .brand { margin-left: 0; font-weight: 700; font-size: 1.2rem; }
+main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+.flash { padding: 0.5rem 0.75rem; border-radius: 6px; }
+.flash.notice { background: #e6f4ea; }
+.flash.alert { background: #fdecea; }
+.menu-page { display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem; align-items: start; }
+.menu-list, .cart-items, .vendor-list { list-style: none; padding: 0; margin: 0; }
+.menu-item, .cart-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid #e3e3df; }
+.item-name, .row-name { flex: 1; }
+.badge { font-size: 0.8rem; background: #fdecea; color: #a12a1f; padding: 0.1rem 0.5rem; border-radius: 999px; }
+.sold-out .item-name { color: #6b7280; }
+.cart { background: #fff; border: 1px solid #e3e3df; border-radius: 8px; padding: 1rem; }
+.cart-row form { margin: 0; }
+.cart-total { font-size: 1.1rem; margin-top: 1rem; }
+.cart-status { min-height: 1.2em; color: #555; margin: 0; }
+.cart-error { background: #fdecea; color: #a12a1f; padding: 0.5rem; border-radius: 6px; }
+button, input[type="submit"] { font: inherit; padding: 0.4rem 0.9rem; border-radius: 6px; border: 1px solid #0b5cad; background: #0b5cad; color: #fff; cursor: pointer; }
+.cart-row button { background: #fff; color: #a12a1f; border-color: #a12a1f; }
+button.loading, button[aria-busy="true"] { opacity: 0.6; cursor: progress; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #f2a900; outline-offset: 2px; }
+.vendor-form { margin-top: 2rem; background: #fff; border: 1px solid #e3e3df; border-radius: 8px; padding: 1rem; }
+.form-errors { color: #a12a1f; }
+@media (max-width: 700px) { .menu-page { grid-template-columns: 1fr; } }

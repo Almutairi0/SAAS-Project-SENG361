@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CampusEats</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/cart.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="<%= root_path %>" class="brand">CampusEats</a>
+      <nav aria-label="Main">
+        <%= link_to "Vendors", vendors_path %>
+        <%= link_to order_path(current_order) do %>
+          Cart (<span id="cart-count"><%= current_order.item_count %></span>)
+        <% end %>
+      </nav>
+    </header>
+
+    <main>
+      <% if notice %><p class="flash notice" role="status"><%= notice %></p><% end %>
+      <% if alert %><p class="flash alert" role="alert"><%= alert %></p><% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

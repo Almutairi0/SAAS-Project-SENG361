@@ -1,0 +1,12 @@
+<section id="cart" class="cart" aria-labelledby="cart-heading">
+  <h2 id="cart-heading">Your cart</h2>
+  <p id="cart-status" class="cart-status" role="status" aria-live="polite"></p>
+  <p id="cart-error" class="cart-error" role="alert" hidden></p>
+
+  <ul id="cart-items" class="cart-items">
+    <%= render partial: "order_items/order_item", collection: order_items %>
+  </ul>
+  <p id="cart-empty" <%= "hidden" if order_items.any? %>>Your cart is empty.</p>
+
+  <p class="cart-total">Total: <strong id="cart-total"><%= sar(order.total) %></strong></p>
+</section>

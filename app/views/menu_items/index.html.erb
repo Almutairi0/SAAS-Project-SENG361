@@ -1,0 +1,40 @@
+<h1><%= @vendor.name %> — Menu</h1>
+
+<div class="menu-page">
+  <section aria-labelledby="menu-heading">
+    <h2 id="menu-heading">Menu</h2>
+    <ul id="menu" class="menu-list" data-cart-url="<%= order_order_items_path(current_order, format: :json) %>">
+      <% @menu_items.each do |item| %>
+        <li class="menu-item<%= ' sold-out' if item.sold_out? %>">
+          <span class="item-name"><%= item.name %></span>
+          <span class="item-price"><%= sar(item.price) %></span>
+          <% if item.sold_out? %><span class="badge">Sold out</span><% end %>
+          <button type="button"
+                  class="add-to-cart"
+                  data-menu-item-id="<%= item.id %>"
+                  aria-label="Add <%= item.name %> to cart">Add to cart</button>
+        </li>
+      <% end %>
+    </ul>
+    <% if @menu_items.empty? %><p>This vendor has no menu items yet.</p><% end %>
+  </section>
+
+  <%= render "orders/cart", order: current_order, order_items: @order_items %>
+</div>
+
+<section class="vendor-form" aria-labelledby="publish-heading">
+  <h2 id="publish-heading">Vendor: publish a menu item</h2>
+  <%= form_with model: [@vendor, @menu_item] do |f| %>
+    <% if @menu_item.errors.any? %>
+      <ul class="form-errors" role="alert">
+        <% @menu_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <p><%= f.label :name %> <%= f.text_field :name, required: true %></p>
+    <p><%= f.label :price, "Price (SAR)" %> <%= f.number_field :price, step: 0.01, min: 0.01, required: true %></p>
+    <p><%= f.check_box :sold_out %> <%= f.label :sold_out, "Sold out" %></p>
+    <p><%= f.submit "Publish item" %></p>
+  <% end %>
+</section>
